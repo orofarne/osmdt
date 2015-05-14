@@ -1,6 +1,18 @@
 namespace go osmdtth
 namespace cpp osmdtth
 
+enum ObjectType {
+	NODE = 0,
+	LINE = 1,
+	POLYGON = 2,
+	RELATION = 3,
+}
+
+struct ObjectRef {
+	1: ObjectType type,
+	2: i64 id,
+}
+
 struct TagValue {
 	1: string text,
 	2: bool boolean,
@@ -10,7 +22,7 @@ struct TagValue {
 
 struct ObjectInfo {
 	1: i64 id,
-	2: map<string, TagValue> tags,
+	2: map<i32, TagValue> tags,
 }
 
 struct Point {
@@ -34,16 +46,9 @@ struct Polygon {
 	3: Point center,
 }
 
-enum RelationMemberType {
-	NODE = 0,
-	LINE = 1,
-	POLYGON = 2,
-}
-
 struct RelationMember {
-	1: RelationMemberType type,
-	2: i64 ref,
-	3: string role,
+	1: ObjectRef ref,
+	2: string role,
 }
 
 struct Relation {
@@ -52,8 +57,10 @@ struct Relation {
 }
 
 struct TileData {
-	1: list<Node> nodes,
-	2: list<Way> ways,
-	3: list<Polygon> polygons,
-	4: list<Relation> relations,
+	1: list<string> keys,
+	2: list<Node> nodes,
+	3: list<Way> ways,
+	4: list<Polygon> polygons,
+	5: list<Relation> relations,
+	6: list<set<i32>> keys_index,
 }
