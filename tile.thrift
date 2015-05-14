@@ -10,7 +10,7 @@ enum ObjectType {
 
 struct ObjectRef {
 	1: ObjectType type,
-	2: i64 id,
+	2: i32 pos,
 }
 
 struct TagValue {
@@ -62,5 +62,5 @@ struct TileData {
 	3: list<Way> ways,
 	4: list<Polygon> polygons,
 	5: list<Relation> relations,
-	6: list<set<i32>> keys_index,
+	6: list<set<ObjectRef>> keys_index,
 }
