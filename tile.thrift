@@ -57,10 +57,10 @@ struct Relation {
 }
 
 struct TileData {
-	1: list<string> keys,
+	1: list<string> keys, /* sorted */
 	2: list<Node> nodes,
 	3: list<Way> ways,
 	4: list<Polygon> polygons,
 	5: list<Relation> relations,
-	6: list<set<ObjectRef>> keys_index,
+	6: list<set<ObjectRef>> keys_index, /* indexes are relates to keys list */
 }
