@@ -1,5 +1,5 @@
-namespace go osmdtth
-namespace cpp osmdtth
+namespace go osmdt
+namespace cpp osmdt
 
 enum ObjectType {
 	NODE = 0,
