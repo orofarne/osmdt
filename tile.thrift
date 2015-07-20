@@ -1,4 +1,4 @@
-namespace go osmdt
+namespace go osmdtth
 namespace cpp osmdt
 
 enum ObjectType {
