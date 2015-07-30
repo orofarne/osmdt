@@ -3,7 +3,7 @@ namespace cpp osmdt
 
 enum ObjectType {
 	NODE = 0,
-	LINE = 1,
+	WAY = 1,
 	POLYGON = 2,
 	RELATION = 3,
 }
