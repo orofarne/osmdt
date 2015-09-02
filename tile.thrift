@@ -23,6 +23,7 @@ struct TagValue {
 struct ObjectInfo {
 	1: i64 id,
 	2: map<i32, TagValue> tags,
+	3: bool truncated,
 }
 
 struct Point {
