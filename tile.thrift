@@ -1,67 +1,46 @@
 namespace go osmdtth
 namespace cpp osmdt
 
-enum ObjectType {
-	NODE = 0,
-	WAY = 1,
-	POLYGON = 2,
-	RELATION = 3,
-}
-
-struct ObjectRef {
-	1: ObjectType type,
-	2: i32 pos,
-}
-
 struct TagValue {
-	1: string text,
-	2: bool boolean,
+	1: optional string text,
+	2: optional bool boolean,
 	3: optional i64 integer,
 	4: optional double real,
 }
 
-struct ObjectInfo {
-	1: i64 id,
-	2: map<i32, TagValue> tags,
-	3: bool truncated,
+struct GeometryRef {
+	1: i64 id
+	2: string role
 }
 
-struct Point {
-	1: double x,
-	2: double y,
+struct Object {
+	1: i64 id,
+	2: map<string, TagValue> tags,
 }
 
 struct Node {
-	1: ObjectInfo info,
-	2: Point point,
+	1: i64 id, /* local if <0, global if >0 */
+	2: double x,
+	3: double y,
 }
 
-struct Way {
-	1: ObjectInfo info,
-	2: list<list<Point>> points,
-}
-
-struct Polygon {
-	1: ObjectInfo info,
-	2: list<list<Point>> points,
-	3: Point center,
-}
-
-struct RelationMember {
-	1: ObjectRef ref,
-	2: string role,
+struct Geometry {
+	1: i64 id,
+	2: list<Node> nodes,
+	3: optional Node point,
+	4: optional list<i64> line,
+	5: optional list<i64> polygon,
 }
 
 struct Relation {
-	1: ObjectInfo info,
-	2: list<RelationMember> members,
+	1: i64 left_id,
+	2: i64 right_id
+	2: string value,
 }
 
 struct TileData {
-	1: list<string> keys, /* sorted */
+	1: list<Object> objects,
 	2: list<Node> nodes,
-	3: list<Way> ways,
-	4: list<Polygon> polygons,
+	3: list<Geometry> geometries,
 	5: list<Relation> relations,
-	6: list<set<ObjectRef>> keys_index, /* indexes are relates to keys list */
 }
