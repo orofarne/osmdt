@@ -15,7 +15,8 @@ struct GeometryRef {
 
 struct Object {
 	1: i64 id,
-	2: map<string, TagValue> tags,
+	2: map<string, string> metainfo,
+	3: map<string, TagValue> tags,
 }
 
 struct Node {
@@ -26,16 +27,19 @@ struct Node {
 
 struct Geometry {
 	1: i64 id,
-	2: list<Node> nodes,
-	3: optional Node point,
-	4: optional list<i64> line,
-	5: optional list<i64> polygon,
+	2: map<string, string> metainfo,
+	3: list<Node> nodes,
+	4: optional Node point,
+	5: optional list<i64> line,
+	6: optional list<i64> polygon,
 }
 
 struct Relation {
-	1: i64 left_id,
-	2: i64 right_id
-	2: string value,
+	1: i64 id,
+	2: map<string, string> metainfo,
+	3: i64 left_id,
+	4: i64 right_id
+	5: string value,
 }
 
 struct TileData {
